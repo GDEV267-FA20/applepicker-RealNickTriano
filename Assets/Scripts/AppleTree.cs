@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AppleTree : MonoBehaviour
 {
@@ -11,10 +12,15 @@ public class AppleTree : MonoBehaviour
     public float leftAndRightEdge = 10f;
     public float chanceToChangeDirection = 0.1f;
     public float secondsBetweenAppleDrops = 1f;
+    public Text scoreGT;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject scoreGO = GameObject.Find("ScoreCounter");
+        scoreGT = scoreGO.GetComponent<Text>();
+
         // Calls named function after 2 seconds
         Invoke("DropApple", 2f);
     }
@@ -50,6 +56,16 @@ public class AppleTree : MonoBehaviour
         else if (pos.x > leftAndRightEdge)
         {
             speed = -Mathf.Abs(speed); // Move left
+        }
+
+        int score = int.Parse(scoreGT.text);
+
+        if (score > 10)
+        {
+            speed += 10;
+           
+            
+
         }
         
     }

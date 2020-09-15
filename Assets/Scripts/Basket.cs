@@ -84,10 +84,7 @@ public class Basket : MonoBehaviour
             {
                 HighScore.score = score;
             }
-            if(score == 10)
-            {
-                speed = 20;
-            }
+            
         }
     }
 }
