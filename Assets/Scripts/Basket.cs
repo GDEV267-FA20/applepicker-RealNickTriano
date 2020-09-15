@@ -62,8 +62,23 @@ public class Basket : MonoBehaviour
         // Find out what hit this basket
 
         GameObject collidedWith = coll.gameObject;
+        if(collidedWith.tag == "GoldApple")
+        {
+            Destroy(collidedWith);
 
-        if (collidedWith.tag == "Apple")
+            // Parse the text of the scoreGT into an int
+
+            int score = int.Parse(scoreGT.text);
+
+            // Add points for catching the apple
+
+            score += 10;
+
+            // Convert the score back to a string and display it
+
+            scoreGT.text = score.ToString();
+        }
+        else if (collidedWith.tag == "Apple")
         {
 
             Destroy(collidedWith);

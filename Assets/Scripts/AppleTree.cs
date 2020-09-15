@@ -7,12 +7,16 @@ using UnityEngine.UI;
 
 public class AppleTree : MonoBehaviour
 {
+    public GameObject goldApplePrefab;
     public GameObject applePrefab;
     public float speed = 1f;
     public float leftAndRightEdge = 10f;
-    public float chanceToChangeDirection = 0.1f;
+    public float chanceToChangeDirection = 0.01f;
     public float secondsBetweenAppleDrops = 1f;
     public Text scoreGT;
+
+    private bool level2 = true;
+    private bool level3 = true;
 
 
     // Start is called before the first frame update
@@ -27,10 +31,21 @@ public class AppleTree : MonoBehaviour
 
     void DropApple()
     {
+        if(Random.value <= .2)
+        {
+            GameObject goldApple = Instantiate<GameObject>(goldApplePrefab);
+
+            goldApple.transform.position = transform.position;
+
+        }
+        else {
         // Creates instance of the apple prefab, assigns to "apple"
         GameObject apple = Instantiate<GameObject>(applePrefab);
         // Sets position of new object at the trees location
         apple.transform.position = transform.position;
+
+        }
+
         // Calls itself
         Invoke("DropApple", secondsBetweenAppleDrops);
     }
@@ -57,23 +72,47 @@ public class AppleTree : MonoBehaviour
         {
             speed = -Mathf.Abs(speed); // Move left
         }
-
-        int score = int.Parse(scoreGT.text);
-
-        if (score > 10)
-        {
-            speed += 10;
-           
-            
-
-        }
         
+
+
+
+
+
     }
+
     void FixedUpdate()
     {
         if (Random.value < chanceToChangeDirection)
         {
             speed *= -1; // Change direction
         }
+
+        int score = int.Parse(scoreGT.text);
+        
+        if (score <= 9)
+        {
+            
+        }
+        else if (score <= 99)
+        {
+            if (level2)
+            {
+                speed = 20;
+                secondsBetweenAppleDrops = .5f;
+                chanceToChangeDirection = .05f;
+                level2 = false;
+            }
+        }
+        else if (score <= 999)
+        {
+            if (level3)
+            {
+                speed = 30;
+                secondsBetweenAppleDrops = .2f;
+                level3 = false;
+            }
+
+        }
+
     }
 }
