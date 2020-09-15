@@ -40,14 +40,20 @@ public class ApplePicker : MonoBehaviour
     {
         //Destroy all of the falling apples
         GameObject[] tAppleArray = GameObject.FindGameObjectsWithTag("Apple");
+        GameObject[] tAppleArray2 = GameObject.FindGameObjectsWithTag("GoldApple");
 
         foreach (GameObject tGO in tAppleArray)
         {
 
             Destroy(tGO);
         }
+        foreach (GameObject tGO in tAppleArray2)
+        {
 
-        if(basketList.Count == 0)
+            Destroy(tGO);
+        }
+
+        if (basketList.Count == 0)
         {
             SceneManager.LoadScene("Scene");
         }

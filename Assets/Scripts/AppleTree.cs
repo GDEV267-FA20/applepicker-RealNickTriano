@@ -17,6 +17,7 @@ public class AppleTree : MonoBehaviour
 
     private bool level2 = true;
     private bool level3 = true;
+    private bool level4 = true;
 
 
     // Start is called before the first frame update
@@ -110,6 +111,17 @@ public class AppleTree : MonoBehaviour
                 speed = 30;
                 secondsBetweenAppleDrops = .2f;
                 level3 = false;
+            }
+
+        }
+        else if (score <= 999)
+        {
+            if (level4)
+            {
+                speed = 35;
+                secondsBetweenAppleDrops = .1f;
+                chanceToChangeDirection = .08f;
+                level4 = false;
             }
 
         }
