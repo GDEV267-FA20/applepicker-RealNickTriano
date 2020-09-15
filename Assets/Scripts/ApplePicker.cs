@@ -47,6 +47,11 @@ public class ApplePicker : MonoBehaviour
             Destroy(tGO);
         }
 
+        if(basketList.Count == 0)
+        {
+            SceneManager.LoadScene("Scene");
+        }
+
         // Destroy one of the baskets                                      
 
         // Get the index of the last Basket in basketList
