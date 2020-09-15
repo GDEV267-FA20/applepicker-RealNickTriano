@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ApplePicker : MonoBehaviour
 {
@@ -14,9 +15,13 @@ public class ApplePicker : MonoBehaviour
 
     public float basketSpacingY = 2f;
 
+    public List<GameObject> basketList;
+
     // Start is called before the first frame update
     void Start()
     {
+        basketList = new List<GameObject>();
+
         for (int i = 0; i < numBaskets; i++)
         {
 
@@ -28,7 +33,35 @@ public class ApplePicker : MonoBehaviour
 
             tBasketGO.transform.position = pos;
 
+            basketList.Add(tBasketGO);
         }
+    }
+    public void AppleDestroyed()
+    {
+        //Destroy all of the falling apples
+        GameObject[] tAppleArray = GameObject.FindGameObjectsWithTag("Apple");
+
+        foreach (GameObject tGO in tAppleArray)
+        {
+
+            Destroy(tGO);
+        }
+
+        // Destroy one of the baskets                                      
+
+        // Get the index of the last Basket in basketList
+
+        int basketIndex = basketList.Count - 1;
+
+        // Get a reference to that Basket GameObject
+
+        GameObject tBasketGO = basketList[basketIndex];
+
+        // Remove the Basket from the list and destroy the GameObject
+
+        basketList.RemoveAt(basketIndex);
+
+        Destroy(tBasketGO);
     }
 
     // Update is called once per frame

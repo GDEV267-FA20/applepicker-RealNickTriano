@@ -21,6 +21,16 @@ public class Apple : MonoBehaviour
         {
             // Deletes entire instance of game object
             Destroy(this.gameObject);
+
+            // Get a reference to the ApplePicker component of Main Camera
+
+            ApplePicker apScript = Camera.main.GetComponent<ApplePicker>(); // Camera has a built in static varable 
+                                                                            //Camera.main that references Main Camera
+                                                                            // no need for Find
+
+            // Call the public AppleDestroyed() method of apScript
+
+            apScript.AppleDestroyed();
         }
     }
 }
